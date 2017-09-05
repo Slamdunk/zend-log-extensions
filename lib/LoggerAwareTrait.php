@@ -21,7 +21,7 @@ trait LoggerAwareTrait
         $this->logger = $logger;
     }
 
-    public function getLogger()
+    public function getLogger(): LoggerInterface
     {
         if ($this->logger === null) {
             $this->logger = new Logger();
