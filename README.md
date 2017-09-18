@@ -47,9 +47,11 @@ This is what you'll find in the directory:
 ```
 $ ls log.txt*
 log.txt  log.txt.1  log.txt.2  log.txt.3  log.txt.4  log.txt.5  log.txt.6  log.txt.7  log.txt.8  log.txt.9
+
 $ cat log.txt.9
 2017-09-05T11:08:46+02:00 INFO (6): 8
 2017-09-05T11:08:47+02:00 NOTICE (5): LOG ROTATE
+
 $ cat log.txt
 2017-09-05T11:08:47+02:00 INFO (6): 9
 ```
