@@ -14,7 +14,7 @@ trait LoggerAwareTrait
 
     public function setLogger(LoggerInterface $logger)
     {
-        if ($this->logger !== null) {
+        if (null !== $this->logger) {
             throw new Exception\RuntimeException('Logger already set, cannot be overwritten');
         }
 
@@ -23,7 +23,7 @@ trait LoggerAwareTrait
 
     public function getLogger(): LoggerInterface
     {
-        if ($this->logger === null) {
+        if (null === $this->logger) {
             $this->logger = new Logger();
             $this->logger->addWriter(new Noop());
         }

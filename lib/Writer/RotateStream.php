@@ -33,7 +33,7 @@ final class RotateStream extends ZendStream
         }
 
         // Setting the default mode
-        if ($mode === null) {
+        if (null === $mode) {
             $mode = 'a';
         }
 
