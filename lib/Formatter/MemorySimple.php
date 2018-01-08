@@ -14,6 +14,6 @@ final class MemorySimple extends ZendSimple
 
     public function format($event)
     {
-        return number_format(memory_get_usage(true) / 1000000, 1, ',', '.') . ' ' . parent::format($event);
+        return \number_format(\memory_get_usage(true) / 1000000, 1, ',', '.') . ' ' . parent::format($event);
     }
 }

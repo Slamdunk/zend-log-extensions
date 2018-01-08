@@ -18,6 +18,6 @@ final class MemorySimpleTest extends TestCase
         $formatter = new MemorySimple();
 
         $this->assertInstanceOf(ZendSimple::class, $formatter);
-        $this->assertNotNull($formatter->format(array()));
+        $this->assertNotNull($formatter->format([]));
     }
 }

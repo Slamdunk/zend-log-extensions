@@ -26,7 +26,7 @@ final class RotateStream extends ZendStream
 
     public function __construct($streamOrUrl, $mode = null, $logSeparator = null)
     {
-        if (is_array($streamOrUrl)) {
+        if (\is_array($streamOrUrl)) {
             $mode           = $streamOrUrl['mode'] ?? null;
             $logSeparator   = $streamOrUrl['log_separator'] ?? null;
             $streamOrUrl    = $streamOrUrl['stream'] ?? null;
@@ -70,20 +70,20 @@ final class RotateStream extends ZendStream
 
     protected function doWrite(array $event)
     {
-        if ($this->inc === $this->checkProbability and is_file($this->streamOrUrl)) {
-            if (filesize($this->streamOrUrl) > $this->maxFileSize) {
-                parent::doWrite(array(
+        if ($this->inc === $this->checkProbability and \is_file($this->streamOrUrl)) {
+            if (\filesize($this->streamOrUrl) > $this->maxFileSize) {
+                parent::doWrite([
                     'timestamp'    => new DateTime(),
                     'priority'     => Logger::NOTICE,
                     'priorityName' => 'NOTICE',
                     'message'      => 'LOG ROTATE',
-                    'extra'        => array(),
-                ));
+                    'extra'        => [],
+                ]);
 
                 $this->rotateFile();
             }
 
-            clearstatcache(true, $this->streamOrUrl);
+            \clearstatcache(true, $this->streamOrUrl);
             $this->inc = 1;
         } else {
             ++$this->inc;
@@ -94,16 +94,16 @@ final class RotateStream extends ZendStream
 
     private function rotateFile()
     {
-        fclose($this->stream);
+        \fclose($this->stream);
 
         $ext = 1;
         do {
-            $newName = sprintf('%s.%s', $this->streamOrUrl, $ext);
+            $newName = \sprintf('%s.%s', $this->streamOrUrl, $ext);
             ++$ext;
-        } while (is_file($newName));
+        } while (\is_file($newName));
 
-        rename($this->streamOrUrl, $newName);
+        \rename($this->streamOrUrl, $newName);
 
-        $this->stream = fopen($this->streamOrUrl, $this->mode, false);
+        $this->stream = \fopen($this->streamOrUrl, $this->mode, false);
     }
 }

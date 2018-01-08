@@ -15,14 +15,14 @@ final class RotateStreamTest extends TestCase
 {
     protected function setUp()
     {
-        $this->filename = sprintf('%s/rotate_stream_assests/log.txt', __DIR__);
+        $this->filename = \sprintf('%s/rotate_stream_assests/log.txt', __DIR__);
         $this->purgeAssets();
 
-        $this->writer = new RotateStream(array(
+        $this->writer = new RotateStream([
             'stream' => $this->filename,
             'mode' => null,
             'log_separator' => '',
-        ));
+        ]);
         $this->writer->setFormatter(new SimpleFormatter('%message%'));
     }
 
@@ -47,32 +47,32 @@ final class RotateStreamTest extends TestCase
 
     public function testLogRotation()
     {
-        file_put_contents($this->filename . '.1', 'ABC');
+        \file_put_contents($this->filename . '.1', 'ABC');
 
         $this->writer->setCheckProbability(2);
         $this->writer->setMaxFileSize(10);
 
         for ($i = 0; $i < 13; ++$i) {
-            $this->writer->write(array(
+            $this->writer->write([
                 'message' => '1',
-            ));
+            ]);
         }
 
-        $this->assertSame('11', file_get_contents($this->filename));
+        $this->assertSame('11', \file_get_contents($this->filename));
 
         $newFile = $this->filename . '.2';
         $this->assertFileExists($newFile);
 
-        $content = file_get_contents($newFile);
+        $content = \file_get_contents($newFile);
 
-        $this->assertContains(str_repeat('1', 11), $content);
+        $this->assertContains(\str_repeat('1', 11), $content);
         $this->assertContains('LOG ROTATE', $content);
     }
 
     private function purgeAssets()
     {
-        foreach (glob(sprintf('%s*', $this->filename)) as $file) {
-            unlink($file);
+        foreach (\glob(\sprintf('%s*', $this->filename)) as $file) {
+            \unlink($file);
         }
     }
 }
