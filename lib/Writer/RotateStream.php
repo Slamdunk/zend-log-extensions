@@ -89,7 +89,7 @@ final class RotateStream extends ZendStream
             ++$this->inc;
         }
 
-        return parent::doWrite($event);
+        parent::doWrite($event);
     }
 
     private function rotateFile()

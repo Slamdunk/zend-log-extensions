@@ -14,6 +14,9 @@ use Zend\Log\LoggerInterface;
  */
 final class LoggerAwareTraitTest extends TestCase
 {
+    private $logger;
+    private $loggerAware;
+
     protected function setUp()
     {
         $this->logger = $this->createMock(LoggerInterface::class);

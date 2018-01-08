@@ -13,6 +13,9 @@ use Zend\Log\Formatter\Simple as SimpleFormatter;
  */
 final class RotateStreamTest extends TestCase
 {
+    private $filename;
+    private $writer;
+
     protected function setUp()
     {
         $this->filename = \sprintf('%s/rotate_stream_assests/log.txt', __DIR__);
