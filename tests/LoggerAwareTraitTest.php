@@ -28,7 +28,7 @@ final class LoggerAwareTraitTest extends TestCase
     {
         $this->loggerAware->setLogger($this->logger);
 
-        $this->assertSame($this->logger, $this->loggerAware->getLogger());
+        static::assertSame($this->logger, $this->loggerAware->getLogger());
     }
 
     public function testLoggerCannotBeOverwritten()
@@ -44,6 +44,6 @@ final class LoggerAwareTraitTest extends TestCase
 
     public function testHasADefaultNullLogger()
     {
-        $this->assertInstanceOf(LoggerInterface::class, $this->loggerAware->getLogger());
+        static::assertInstanceOf(LoggerInterface::class, $this->loggerAware->getLogger());
     }
 }

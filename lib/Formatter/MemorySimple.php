@@ -8,7 +8,7 @@ use Zend\Log\Formatter\Simple as ZendSimple;
 
 final class MemorySimple extends ZendSimple
 {
-    const DEFAULT_FORMAT = '%timestamp% %priorityName% > %message% %extra%';
+    public const DEFAULT_FORMAT = '%timestamp% %priorityName% > %message% %extra%';
 
     protected $dateTimeFormat = 'Y-m-d+H:i:s';
 
