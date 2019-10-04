@@ -13,7 +13,14 @@ use Zend\Log\Formatter\Simple as SimpleFormatter;
  */
 final class RotateStreamTest extends TestCase
 {
+    /**
+     * @var string
+     */
     private $filename;
+
+    /**
+     * @var RotateStream
+     */
     private $writer;
 
     protected function setUp()
@@ -22,8 +29,8 @@ final class RotateStreamTest extends TestCase
         $this->purgeAssets();
 
         $this->writer = new RotateStream([
-            'stream' => $this->filename,
-            'mode' => null,
+            'stream'        => $this->filename,
+            'mode'          => null,
             'log_separator' => '',
         ]);
         $this->writer->setFormatter(new SimpleFormatter('%message%'));
@@ -36,16 +43,16 @@ final class RotateStreamTest extends TestCase
 
     public function testOptions()
     {
-        $this->assertSame($this->filename, $this->writer->getStreamname());
+        static::assertSame($this->filename, $this->writer->getStreamname());
 
-        $this->assertGreaterThan(1, $this->writer->getCheckProbability());
-        $this->assertGreaterThan(1, $this->writer->getMaxFileSize());
+        static::assertGreaterThan(1, $this->writer->getCheckProbability());
+        static::assertGreaterThan(1, $this->writer->getMaxFileSize());
 
         $this->writer->setCheckProbability(1);
         $this->writer->setMaxFileSize(1);
 
-        $this->assertSame(1, $this->writer->getCheckProbability());
-        $this->assertSame(1, $this->writer->getMaxFileSize());
+        static::assertSame(1, $this->writer->getCheckProbability());
+        static::assertSame(1, $this->writer->getMaxFileSize());
     }
 
     public function testLogRotation()
@@ -61,15 +68,15 @@ final class RotateStreamTest extends TestCase
             ]);
         }
 
-        $this->assertSame('11', \file_get_contents($this->filename));
+        static::assertSame('11', \file_get_contents($this->filename));
 
         $newFile = $this->filename . '.2';
-        $this->assertFileExists($newFile);
+        static::assertFileExists($newFile);
 
         $content = \file_get_contents($newFile);
 
-        $this->assertContains(\str_repeat('1', 11), $content);
-        $this->assertContains('LOG ROTATE', $content);
+        static::assertContains(\str_repeat('1', 11), $content);
+        static::assertContains('LOG ROTATE', $content);
     }
 
     private function purgeAssets()

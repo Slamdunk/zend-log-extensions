@@ -27,9 +27,9 @@ final class RotateStream extends ZendStream
     public function __construct($streamOrUrl, $mode = null, $logSeparator = null)
     {
         if (\is_array($streamOrUrl)) {
-            $mode           = $streamOrUrl['mode'] ?? null;
+            $mode           = $streamOrUrl['mode']          ?? null;
             $logSeparator   = $streamOrUrl['log_separator'] ?? null;
-            $streamOrUrl    = $streamOrUrl['stream'] ?? null;
+            $streamOrUrl    = $streamOrUrl['stream']        ?? null;
         }
 
         // Setting the default mode
@@ -38,7 +38,7 @@ final class RotateStream extends ZendStream
         }
 
         $this->streamOrUrl = $streamOrUrl;
-        $this->mode = $mode;
+        $this->mode        = $mode;
 
         parent::__construct($this->streamOrUrl, $this->mode, $logSeparator);
     }
@@ -70,7 +70,7 @@ final class RotateStream extends ZendStream
 
     protected function doWrite(array $event)
     {
-        if ($this->inc === $this->checkProbability and \is_file($this->streamOrUrl)) {
+        if ($this->inc === $this->checkProbability && \is_file($this->streamOrUrl)) {
             if (\filesize($this->streamOrUrl) > $this->maxFileSize) {
                 parent::doWrite([
                     'timestamp'    => new DateTime(),
