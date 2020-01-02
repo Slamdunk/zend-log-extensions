@@ -1,3 +1,7 @@
+> ## Repository abandoned 2019-12-31
+>
+> This repository has moved to [Slamdunk/laminas-log-extensions](https://github.com/Slamdunk/laminas-log-extensions).
+
 # Slam Zend\Log extensions
 
 [![Build Status](https://travis-ci.org/Slamdunk/zend-log-extensions.svg?branch=master)](https://travis-ci.org/Slamdunk/zend-log-extensions)
