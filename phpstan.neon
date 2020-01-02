@@ -1,20 +1,21 @@
 includes:
-    - vendor/phpstan/phpstan/conf/config.levelmax.neon
+    - phar://phpstan.phar/conf/config.levelmax.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/slam/phpstan-extensions/conf/slam-rules.neon
     - vendor/slam/phpstan-extensions/conf/thecodingmachine-rules.neon
 
 parameters:
+    checkMissingIterableValueType: false
     paths:
         - lib/
         - tests/
     ignoreErrors:
         - '#Function \w+ is unsafe to use, rely on Symfony component .+ instead#'
         -
-            message: '#Parameter \#1 \$fp of function fclose expects resource, Zend\\Log\\Writer\\Stream\|null given#'
+            message: '#Parameter \#1 \$fp of function fclose expects resource, Laminas\\Log\\Writer\\Stream\|null given#'
             path: %currentWorkingDirectory%/lib/Writer/RotateStream.php
         -
-            message: '#Property Zend\\Log\\Writer\\Stream::\$stream \(Zend\\Log\\Writer\\Stream\|null\) does not accept resource\|false#'
+            message: '#Property Laminas\\Log\\Writer\\Stream::\$stream \(Laminas\\Log\\Writer\\Stream\|null\) does not accept resource\|false#'
             path: %currentWorkingDirectory%/lib/Writer/RotateStream.php
         -
             message: '#Argument of an invalid type array<int, string>\|false supplied for foreach, only iterables are supported#'

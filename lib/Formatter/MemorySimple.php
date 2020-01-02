@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Slam\Zend\Log\Formatter;
 
-use Zend\Log\Formatter\Simple as ZendSimple;
+use Laminas\Log\Formatter\Simple as ZendSimple;
 
 final class MemorySimple extends ZendSimple
 {
     public const DEFAULT_FORMAT = '%timestamp% %priorityName% > %message% %extra%';
 
+    /**
+     * @var string
+     */
     protected $dateTimeFormat = 'Y-m-d+H:i:s';
 
     public function format($event)

@@ -5,23 +5,40 @@ declare(strict_types=1);
 namespace Slam\Zend\Log\Writer;
 
 use DateTime;
-use Zend\Log\Logger;
-use Zend\Log\Writer\Stream as ZendStream;
+use Laminas\Log\Logger;
+use Laminas\Log\Writer\Stream as ZendStream;
 
 final class RotateStream extends ZendStream
 {
-    // On average we write 100 byte at time, and so doing the check
-    // once every 10.000.000 bytes written we can save resources.
+    /**
+     * On average we write 100 byte at time, and so doing the check
+     * once every 10.000.000 bytes written we can save resources.
+     *
+     * @var int
+     */
     private $checkProbability = 100000;
 
-    // On linux, PHP is able to write only 2.147.483.647 bytes.
-    // Let's rotate the file at 75% of this size
+    /**
+     * On linux, PHP is able to write only 2.147.483.647 bytes.
+     * Let's rotate the file at 75% of this size.
+     *
+     * @var int
+     */
     private $maxFileSize = 1610612735;
 
+    /**
+     * @var null|mixed
+     */
     private $streamOrUrl;
 
+    /**
+     * @var null|mixed|string
+     */
     private $mode;
 
+    /**
+     * @var int
+     */
     private $inc = 1;
 
     public function __construct($streamOrUrl, $mode = null, $logSeparator = null)
@@ -43,12 +60,15 @@ final class RotateStream extends ZendStream
         parent::__construct($this->streamOrUrl, $this->mode, $logSeparator);
     }
 
+    /**
+     * @return null|mixed
+     */
     public function getStreamname()
     {
         return $this->streamOrUrl;
     }
 
-    public function setCheckProbability(int $checkProbability)
+    public function setCheckProbability(int $checkProbability): void
     {
         $this->checkProbability = $checkProbability;
     }
@@ -58,7 +78,7 @@ final class RotateStream extends ZendStream
         return $this->checkProbability;
     }
 
-    public function setMaxFileSize(int $maxFileSize)
+    public function setMaxFileSize(int $maxFileSize): void
     {
         $this->maxFileSize = $maxFileSize;
     }
@@ -92,7 +112,7 @@ final class RotateStream extends ZendStream
         parent::doWrite($event);
     }
 
-    private function rotateFile()
+    private function rotateFile(): void
     {
         \fclose($this->stream);
 

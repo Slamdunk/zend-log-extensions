@@ -4,7 +4,7 @@
     colors="true"
     verbose="true">
 
-    <testsuite name="Zend\Log">
+    <testsuite name="Laminas\Log">
         <directory>./tests</directory>
     </testsuite>
 

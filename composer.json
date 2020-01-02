@@ -1,6 +1,6 @@
 {
     "name": "slam/zend-log-extensions",
-    "description": "Slam extensions for zendframework/zend-log",
+    "description": "Slam extensions for laminas/laminas-log",
     "license": "MIT",
     "authors": [
         {
@@ -10,17 +10,17 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "zendframework/zend-log": "^2.9"
+        "php": "^7.2",
+        "laminas/laminas-log": "^2.9"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.11",
-        "phpstan/phpstan-phpunit": "^0.11",
-        "phpunit/phpunit": "^7.5",
-        "slam/php-cs-fixer-extensions": "^1.18",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-phpunit": "^0.12",
+        "phpunit/phpunit": "^8.5",
+        "slam/php-cs-fixer-extensions": "^1.19",
         "slam/php-debug-r": "^1.6",
-        "slam/phpstan-extensions": "^3.6",
-        "thecodingmachine/phpstan-strict-rules": "^0.11"
+        "slam/phpstan-extensions": "^4.0",
+        "thecodingmachine/phpstan-strict-rules": "^0.12"
     },
     "autoload": {
         "psr-4": {

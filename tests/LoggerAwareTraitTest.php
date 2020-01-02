@@ -4,34 +4,45 @@ declare(strict_types=1);
 
 namespace Slam\Zend\Log\Tests;
 
+use Laminas\Log\LoggerInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Slam\Zend\Log\Exception;
+use Slam\Zend\Log\LoggerAwareInterface;
 use Slam\Zend\Log\LoggerAwareTrait;
-use Zend\Log\LoggerInterface;
 
 /**
  * @covers \Slam\Zend\Log\LoggerAwareTrait
  */
 final class LoggerAwareTraitTest extends TestCase
 {
+    /**
+     * @var MockObject&LoggerInterface
+     */
     private $logger;
+
+    /**
+     * @var LoggerAwareInterface
+     */
     private $loggerAware;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->logger = $this->createMock(LoggerInterface::class);
 
-        $this->loggerAware = $this->getObjectForTrait(LoggerAwareTrait::class);
+        /** @var LoggerAwareInterface $loggerAware */
+        $loggerAware       = $this->getObjectForTrait(LoggerAwareTrait::class);
+        $this->loggerAware = $loggerAware;
     }
 
-    public function testSetAndRetrieve()
+    public function testSetAndRetrieve(): void
     {
         $this->loggerAware->setLogger($this->logger);
 
-        static::assertSame($this->logger, $this->loggerAware->getLogger());
+        self::assertSame($this->logger, $this->loggerAware->getLogger());
     }
 
-    public function testLoggerCannotBeOverwritten()
+    public function testLoggerCannotBeOverwritten(): void
     {
         $logger1 = clone $this->logger;
         $logger2 = clone $this->logger;
@@ -42,8 +53,8 @@ final class LoggerAwareTraitTest extends TestCase
         $this->loggerAware->setLogger($logger2);
     }
 
-    public function testHasADefaultNullLogger()
+    public function testHasADefaultNullLogger(): void
     {
-        static::assertInstanceOf(LoggerInterface::class, $this->loggerAware->getLogger());
+        self::assertInstanceOf(LoggerInterface::class, $this->loggerAware->getLogger());
     }
 }

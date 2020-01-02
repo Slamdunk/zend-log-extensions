@@ -1,10 +1,10 @@
-# Slam Zend\Log extensions
+# Slam \[Zend|Laminas\]\Log extensions
 
 [![Build Status](https://travis-ci.org/Slamdunk/zend-log-extensions.svg?branch=master)](https://travis-ci.org/Slamdunk/zend-log-extensions)
 [![Code Coverage](https://scrutinizer-ci.com/g/Slamdunk/zend-log-extensions/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Slamdunk/zend-log-extensions/?branch=master)
 [![Packagist](https://img.shields.io/packagist/v/slam/zend-log-extensions.svg)](https://packagist.org/packages/slam/zend-log-extensions)
 
-Extensions for [Zend\Log](https://github.com/zendframework/zend-log)
+Extensions for [Laminas\Log](https://github.com/laminas/laminas-log)
 
 ## Installation
 
@@ -22,8 +22,8 @@ losing some if you reach this limit.
 
 ```php
 use Slam\Zend\Log\Writer\RotateStream;
-use Zend\Log\Formatter\Simple;
-use Zend\Log\Logger;
+use Laminas\Log\Formatter\Simple;
+use Laminas\Log\Logger;
 
 $writer = new RotateStream(__DIR__ . '/log.txt');
 $writer->setFormatter(new Simple());

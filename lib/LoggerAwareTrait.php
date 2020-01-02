@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace Slam\Zend\Log;
 
-use Zend\Log\Logger;
-use Zend\Log\LoggerInterface;
-use Zend\Log\Writer\Noop;
+use Laminas\Log\Logger;
+use Laminas\Log\LoggerInterface;
+use Laminas\Log\Writer\Noop;
 
 trait LoggerAwareTrait
 {
+    /**
+     * @var null|LoggerInterface
+     */
     private $logger;
 
-    public function setLogger(LoggerInterface $logger)
+    public function setLogger(LoggerInterface $logger): void
     {
         if (null !== $this->logger) {
             throw new Exception\RuntimeException('Logger already set, cannot be overwritten');
